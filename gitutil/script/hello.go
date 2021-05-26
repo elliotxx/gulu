@@ -5,7 +5,7 @@ package main
 import (
 	"fmt"
 
-	. "go-utils/gitutil"
+	. "github.com/elliotxx/go-utils/gitutil"
 )
 
 func main() {

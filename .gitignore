@@ -24,3 +24,7 @@
 # ide
 .idea/
 *.iml
+
+// pkg version files
+z_update_version.go
+VERSION

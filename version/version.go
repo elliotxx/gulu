@@ -1,4 +1,4 @@
-//go:generate go run -mod vendor gen.go
+//go:generate go run script/gen.go
 //go:generate go fmt
 
 package version
@@ -6,7 +6,7 @@ package version
 import (
 	"fmt"
 
-	_ "go-utils/gitutil"
+	_ "github.com/elliotxx/go-utils/gitutil"
 )
 
 var (
