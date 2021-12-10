@@ -61,6 +61,7 @@ func newZapLogger(config *Configuration) (Logger, error) {
 	logger := zap.New(combinedCore, zap.AddCallerSkip(2), zap.AddCaller(), zap.AddStacktrace(zapcore.ErrorLevel)).Sugar()
 	return &zapLogger{sugaredLogger: logger, defaultLevel: defaultAtom, debugLevel: debugAtom, errorLevel: errorAtom}, nil
 }
+
 func (l *zapLogger) Debug(args ...interface{}) {
 	l.sugaredLogger.Debug(args...)
 }
@@ -72,6 +73,7 @@ func (l *zapLogger) Debugf(format string, args ...interface{}) {
 func (l *zapLogger) Infof(format string, args ...interface{}) {
 	l.sugaredLogger.Infof(format, args...)
 }
+
 func (l *zapLogger) Info(args ...interface{}) {
 	l.sugaredLogger.Info(args...)
 }
