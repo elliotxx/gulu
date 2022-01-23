@@ -6,7 +6,7 @@ package main
 import (
 	"fmt"
 
-	. "github.com/elliotxx/go-utils/gitutil"
+	. "github.com/elliotxx/gulu/gitutil"
 )
 
 func main() {

@@ -1,4 +1,4 @@
-module github.com/elliotxx/go-utils
+module github.com/elliotxx/gulu
 
 go 1.16
 
