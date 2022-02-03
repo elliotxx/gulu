@@ -1,14 +1,18 @@
+// Package gitutil provides convenient interfaces for operating git.
+//
+// Dependency: git needs to be installed locally
 package gitutil
 
 import (
-	"fmt"
+	"errors"
 	"os/exec"
 	"strings"
 )
 
-// refs:
 // https://git-scm.com/docs/git-tag
 // https://github.com/vivin/better-setuptools-git-version/blob/master/better_setuptools_git_version.py
+
+var ErrEmptyGitTag = errors.New("empty tag")
 
 // get remote url
 func GetRemoteUrl() (string, error) {
@@ -62,7 +66,7 @@ func GetLatestTagFromLocal() (tag string, err error) {
 func GetTagList() (tags []string, err error) {
 	// git tag --merged
 	stdout, err := exec.Command(
-		`git`, `tag`, `--merged`,
+		`git`, `describe`, `--abbrev=0`, `--tags`,
 	).CombinedOutput()
 	if err != nil {
 		return nil, err
@@ -71,6 +75,40 @@ func GetTagList() (tags []string, err error) {
 	for _, s := range strings.Split(strings.TrimSpace(string(stdout)), "\n") {
 		if s := strings.TrimSpace(s); s != "" {
 			tags = append(tags, s)
+		}
+	}
+	return
+}
+
+func GetTagListFromRemote(remoteUrl string, reverse bool) (tags []string, err error) {
+	tmpTags := []string{}
+	// Get all tags from remote
+	stdout, err := exec.Command(
+		`bash`, `-c`, `git ls-remote --tags --sort=v:refname `+remoteUrl+` | sed 's/.*\///; s/\^{}//'`,
+	).CombinedOutput()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, s := range strings.Split(strings.TrimSpace(string(stdout)), "\n") {
+		if s := strings.TrimSpace(s); s != "" {
+			tmpTags = append(tmpTags, s)
+		}
+	}
+
+	// Reverse slice
+	if reverse {
+		for i, j := 0, len(tmpTags)-1; i < j; i, j = i+1, j-1 {
+			tmpTags[i], tmpTags[j] = tmpTags[j], tmpTags[i]
+		}
+	}
+
+	// Remove duplicates
+	tagSet := make(map[string]struct{})
+	for _, tag := range tmpTags {
+		if _, ok := tagSet[tag]; !ok {
+			tags = append(tags, tag)
+			tagSet[tag] = struct{}{}
 		}
 	}
 	return
@@ -102,7 +140,7 @@ func GetHeadHashShort() (sha string, err error) {
 
 func GetTagCommitSha(tag string) (sha string, err error) {
 	if tag == "" {
-		return "", fmt.Errorf("gitutil.GetTagCommitSha: empty tag")
+		return "", ErrEmptyGitTag
 	}
 
 	sha, err = GetTagCommitShaFromLocal(tag)
@@ -134,13 +172,13 @@ func GetTagCommitShaFromLocal(tag string) (sha string, err error) {
 
 // get tag commit sha from remote,
 // the fitting git clone depth is 1
-func GetTagCommitShaFromRemote(tag string) (string, error) {
+func GetTagCommitShaFromRemote(_ string) (string, error) {
 	// get remote url
 	remoteUrl, err := GetRemoteUrl()
 	if err != nil {
 		return "", err
 	}
-	// git ls-remote --tags --sort=v:refname git@xxx:xxx/xxx.git | tail -n1 | awk '{print $1}'
+	// git ls-remote --tags --sort=v:refname <git repo url> | tail -n1 | awk '{print $1}'
 	stdout, err := exec.Command(
 		`bash`, `-c`, `git ls-remote --tags --sort=v:refname `+remoteUrl+` | tail -n1 | awk '{print $1}'`,
 	).CombinedOutput()
@@ -152,7 +190,7 @@ func GetTagCommitShaFromRemote(tag string) (string, error) {
 
 func IsHeadAtTag(tag string) (bool, error) {
 	if tag == "" {
-		return false, fmt.Errorf("gitutil.IsHeadAtTag: empty tag")
+		return false, ErrEmptyGitTag
 	}
 	sha1, err1 := GetTagCommitSha(tag)
 	if err1 != nil {
