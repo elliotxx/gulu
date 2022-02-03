@@ -31,6 +31,7 @@ func TimeEncoder(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
 func newZapCore(logPath string, level zapcore.Level, maxSize int, count int) (zapcore.Core, zap.AtomicLevel) {
 	atom := zap.NewAtomicLevel()
 	atom.SetLevel(level)
+
 	encoderConfig := zap.NewProductionEncoderConfig()
 	encoderConfig.EncodeTime = TimeEncoder
 	encoderConfig.EncodeLevel = zapcore.CapitalLevelEncoder
@@ -43,6 +44,7 @@ func newZapCore(logPath string, level zapcore.Level, maxSize int, count int) (za
 		LocalTime:  true,
 		MaxAge:     28,
 	})
+
 	return zapcore.NewCore(encoder, writer, atom), atom
 }
 
@@ -59,6 +61,7 @@ func newZapLogger(config *Configuration) (Logger, error) {
 	// AddCallerSkip skips 2 number of callers since the file that gets
 	// logged will always be the wrapped file.
 	logger := zap.New(combinedCore, zap.AddCallerSkip(2), zap.AddCaller(), zap.AddStacktrace(zapcore.ErrorLevel)).Sugar()
+
 	return &zapLogger{sugaredLogger: logger, defaultLevel: defaultAtom, debugLevel: debugAtom, errorLevel: errorAtom}, nil
 }
 
@@ -117,6 +120,7 @@ func (l *zapLogger) SetLevel(level Level) {
 	if userLevel > zapcore.InfoLevel {
 		l.defaultLevel.SetLevel(userLevel)
 	}
+
 	if userLevel > zapcore.ErrorLevel {
 		l.defaultLevel.SetLevel(userLevel)
 	}

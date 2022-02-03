@@ -13,6 +13,7 @@ func Exists(path string) bool {
 	if err != nil {
 		return os.IsExist(err)
 	}
+
 	return true
 }
 
@@ -22,6 +23,7 @@ func IsDir(path string) bool {
 	if err != nil {
 		return false
 	}
+
 	return s.IsDir()
 }
 
@@ -31,6 +33,7 @@ func IsFile(path string) bool {
 	if err != nil {
 		return false
 	}
+
 	return !s.IsDir()
 }
 
@@ -43,20 +46,24 @@ func ReadLines(path string) ([]string, error) {
 	defer file.Close()
 
 	var lines []string
+
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
 	}
+
 	return lines, scanner.Err()
 }
 
 // 字符串截取
 func substr(s string, pos, length int) string {
 	runes := []rune(s)
+
 	l := pos + length
 	if l > len(runes) {
 		l = len(runes)
 	}
+
 	return string(runes[pos:l])
 }
 
@@ -72,14 +79,17 @@ func GetGoModRootDir(curDir string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
 	for _, file := range files {
 		if !file.IsDir() && file.Name() == "go.mod" {
 			return curDir, nil
 		}
 	}
+
 	rootDir, err := GetGoModRootDir(GetParentDir(curDir))
 	if err != nil {
 		return "", err
 	}
+
 	return rootDir, nil
 }

@@ -15,13 +15,14 @@ import (
 var ErrEmptyGitTag = errors.New("empty tag")
 
 // get remote url
-func GetRemoteUrl() (string, error) {
+func GetRemoteURL() (string, error) {
 	stdout, err := exec.Command(
 		"git", "config", "--get", "remote.origin.url",
 	).CombinedOutput()
 	if err != nil {
 		return "", err
 	}
+
 	return strings.TrimSpace(string(stdout)), nil
 }
 
@@ -30,6 +31,7 @@ func GetLatestTag() (string, error) {
 	if tag == "" || err != nil {
 		return GetLatestTagFromRemote()
 	}
+
 	return tag, nil
 }
 
@@ -37,18 +39,19 @@ func GetLatestTag() (string, error) {
 // the fitting git clone depth is 1
 func GetLatestTagFromRemote() (tag string, err error) {
 	// get remote url
-	remoteUrl, err := GetRemoteUrl()
+	remoteURL, err := GetRemoteURL()
 	if err != nil {
 		return "", err
 	}
 
 	// get latest tag from remote
 	stdout, err := exec.Command(
-		`bash`, `-c`, `git ls-remote --tags --sort=v:refname `+remoteUrl+` | tail -n1 | sed 's/.*\///; s/\^{}//'`,
+		`bash`, `-c`, `git ls-remote --tags --sort=v:refname `+remoteURL+` | tail -n1 | sed 's/.*\///; s/\^{}//'`,
 	).CombinedOutput()
 	if err != nil {
 		return "", err
 	}
+
 	return strings.TrimSpace(string(stdout)), nil
 }
 
@@ -57,9 +60,11 @@ func GetLatestTagFromLocal() (tag string, err error) {
 	if err != nil {
 		return "", err
 	}
+
 	if len(tags) > 0 {
 		tag = tags[len(tags)-1]
 	}
+
 	return strings.TrimSpace(tag), nil
 }
 
@@ -77,14 +82,15 @@ func GetTagList() (tags []string, err error) {
 			tags = append(tags, s)
 		}
 	}
+
 	return
 }
 
-func GetTagListFromRemote(remoteUrl string, reverse bool) (tags []string, err error) {
+func GetTagListFromRemote(remoteURL string, reverse bool) (tags []string, err error) {
 	tmpTags := []string{}
 	// Get all tags from remote
 	stdout, err := exec.Command(
-		`bash`, `-c`, `git ls-remote --tags --sort=v:refname `+remoteUrl+` | sed 's/.*\///; s/\^{}//'`,
+		`bash`, `-c`, `git ls-remote --tags --sort=v:refname `+remoteURL+` | sed 's/.*\///; s/\^{}//'`,
 	).CombinedOutput()
 	if err != nil {
 		return nil, err
@@ -111,6 +117,7 @@ func GetTagListFromRemote(remoteUrl string, reverse bool) (tags []string, err er
 			tagSet[tag] = struct{}{}
 		}
 	}
+
 	return
 }
 
@@ -124,6 +131,7 @@ func GetHeadHash() (sha string, err error) {
 	}
 
 	sha = strings.TrimSpace(string(stdout))
+
 	return
 }
 
@@ -132,9 +140,11 @@ func GetHeadHashShort() (sha string, err error) {
 	if err != nil {
 		return "", err
 	}
+
 	if len(sha) > 8 {
 		sha = sha[:8]
 	}
+
 	return
 }
 
@@ -147,6 +157,7 @@ func GetTagCommitSha(tag string) (sha string, err error) {
 	if sha == "" || err != nil {
 		return GetTagCommitShaFromRemote(tag)
 	}
+
 	return
 }
 
@@ -158,15 +169,19 @@ func GetTagCommitShaFromLocal(tag string) (sha string, err error) {
 	if err != nil {
 		return "", err
 	}
-	var lines []string
+
+	lines := []string{}
+
 	for _, s := range strings.Split(strings.TrimSpace(string(stdout)), "\n") {
 		if s := strings.TrimSpace(s); s != "" {
 			lines = append(lines, s)
 		}
 	}
+
 	if len(lines) > 0 {
 		sha = lines[len(lines)-1]
 	}
+
 	return strings.TrimSpace(sha), nil
 }
 
@@ -174,17 +189,18 @@ func GetTagCommitShaFromLocal(tag string) (sha string, err error) {
 // the fitting git clone depth is 1
 func GetTagCommitShaFromRemote(_ string) (string, error) {
 	// get remote url
-	remoteUrl, err := GetRemoteUrl()
+	remoteURL, err := GetRemoteURL()
 	if err != nil {
 		return "", err
 	}
 	// git ls-remote --tags --sort=v:refname <git repo url> | tail -n1 | awk '{print $1}'
 	stdout, err := exec.Command(
-		`bash`, `-c`, `git ls-remote --tags --sort=v:refname `+remoteUrl+` | tail -n1 | awk '{print $1}'`,
+		`bash`, `-c`, `git ls-remote --tags --sort=v:refname `+remoteURL+` | tail -n1 | awk '{print $1}'`,
 	).CombinedOutput()
 	if err != nil {
 		return "", err
 	}
+
 	return strings.TrimSpace(string(stdout)), nil
 }
 
@@ -192,14 +208,17 @@ func IsHeadAtTag(tag string) (bool, error) {
 	if tag == "" {
 		return false, ErrEmptyGitTag
 	}
+
 	sha1, err1 := GetTagCommitSha(tag)
 	if err1 != nil {
 		return false, err1
 	}
+
 	sha2, err2 := GetHeadHash()
 	if err2 != nil {
 		return false, err2
 	}
+
 	return sha1 == sha2, nil
 }
 
@@ -213,5 +232,6 @@ func IsDirty() (dirty bool, err error) {
 	}
 
 	dirty = strings.TrimSpace(string(stdout)) != ""
+
 	return
 }

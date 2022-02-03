@@ -10,6 +10,7 @@ type Level uint8
 
 var log Logger
 
+// Const for logging levels
 const (
 	FATAL Level = iota
 	ERROR
@@ -30,6 +31,7 @@ func SetLogger(config *Configuration) {
 		fmt.Fprintf(os.Stderr, "failed to set logger by configuration %v as %s\n", config, err)
 		os.Exit(1)
 	}
+
 	log = logger
 }
 

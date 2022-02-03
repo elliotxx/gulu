@@ -11,39 +11,39 @@ import (
 )
 
 var (
-	mockCombinedOutputErr           = errors.New("mock CombinedOutput error")
-	mockGetRemoteUrlErr             = errors.New("mock GetRemoteUrl error")
-	mockGetHeadHashErr              = errors.New("mock GetHeadHash error")
-	mockGetTagCommitShaErr          = errors.New("mock GetTagCommitSha error")
-	mockGetTagCommitShaFromLocalErr = errors.New("mock GetTagCommitShaFromLocal error")
+	errMockCombinedOutputErr           = errors.New("mock CombinedOutput error")
+	errMockGetRemoteURLErr             = errors.New("mock GetRemoteUrl error")
+	errMockGetHeadHashErr              = errors.New("mock GetHeadHash error")
+	errMockGetTagCommitShaErr          = errors.New("mock GetTagCommitSha error")
+	errMockGetTagCommitShaFromLocalErr = errors.New("mock GetTagCommitShaFromLocal error")
 )
 
 func TestGetRemoteUrl(t *testing.T) {
 	t.Run("success", func(t *testing.T) {
-		url, err := GetRemoteUrl()
+		url, err := GetRemoteURL()
 		assert.Nil(t, err)
 		fmt.Println(url)
 	})
 
 	t.Run("fail", func(t *testing.T) {
-		mockCombinedOutput(nil, mockCombinedOutputErr)
+		mockCombinedOutput(nil, errMockCombinedOutputErr)
 		defer monkey.UnpatchAll()
-		_, err := GetRemoteUrl()
+		_, err := GetRemoteURL()
 		assert.NotNil(t, err)
 	})
 }
 
 func TestGetLatestTagFromRemote(t *testing.T) {
 	t.Run("success", func(t *testing.T) {
-		mockGetRemoteUrl("", mockGetRemoteUrlErr)
+		mockGetRemoteURL("", errMockGetRemoteURLErr)
 		defer monkey.UnpatchAll()
 		_, err := GetLatestTagFromRemote()
 		assert.NotNil(t, err)
 	})
 
 	t.Run("fail", func(t *testing.T) {
-		mockGetRemoteUrl("", nil)
-		mockCombinedOutput(nil, mockCombinedOutputErr)
+		mockGetRemoteURL("", nil)
+		mockCombinedOutput(nil, errMockCombinedOutputErr)
 		defer monkey.UnpatchAll()
 		_, err := GetLatestTagFromRemote()
 		assert.NotNil(t, err)
@@ -73,7 +73,7 @@ func TestGetHeadHash(t *testing.T) {
 	})
 
 	t.Run("fail", func(t *testing.T) {
-		mockCombinedOutput(nil, mockCombinedOutputErr)
+		mockCombinedOutput(nil, errMockCombinedOutputErr)
 		defer monkey.UnpatchAll()
 		_, err := GetHeadHash()
 		assert.NotNil(t, err)
@@ -82,7 +82,7 @@ func TestGetHeadHash(t *testing.T) {
 
 func TestGetHeadHashShort(t *testing.T) {
 	t.Run("success", func(t *testing.T) {
-		mockGetHeadHash("", mockGetHeadHashErr)
+		mockGetHeadHash("", errMockGetHeadHashErr)
 		defer monkey.UnpatchAll()
 		_, err := GetHeadHashShort()
 		assert.NotNil(t, err)
@@ -96,7 +96,7 @@ func TestGetTagCommitSha(t *testing.T) {
 	})
 
 	t.Run("success", func(t *testing.T) {
-		mockGetTagCommitShaFromLocal("", mockGetTagCommitShaFromLocalErr)
+		mockGetTagCommitShaFromLocal("", errMockGetTagCommitShaFromLocalErr)
 		mockGetTagCommitShaFromRemote("remote sha", nil)
 		defer monkey.UnpatchAll()
 		_, err := GetTagCommitSha("tag")
@@ -106,7 +106,7 @@ func TestGetTagCommitSha(t *testing.T) {
 
 func TestGetTagCommitShaFromLocal(t *testing.T) {
 	t.Run("fail", func(t *testing.T) {
-		mockCombinedOutput(nil, mockCombinedOutputErr)
+		mockCombinedOutput(nil, errMockCombinedOutputErr)
 		defer monkey.UnpatchAll()
 		_, err := GetTagCommitShaFromLocal("")
 		assert.NotNil(t, err)
@@ -115,7 +115,7 @@ func TestGetTagCommitShaFromLocal(t *testing.T) {
 
 func TestGetTagCommitShaFromRemote(t *testing.T) {
 	t.Run("success", func(t *testing.T) {
-		mockGetRemoteUrl("", mockGetRemoteUrlErr)
+		mockGetRemoteURL("", errMockGetRemoteURLErr)
 		defer monkey.UnpatchAll()
 		_, err := GetTagCommitShaFromRemote("")
 		assert.NotNil(t, err)
@@ -129,7 +129,7 @@ func TestIsHeadAtTag(t *testing.T) {
 	})
 
 	t.Run("fail-1", func(t *testing.T) {
-		mockGetTagCommitSha("", mockGetTagCommitShaErr)
+		mockGetTagCommitSha("", errMockGetTagCommitShaErr)
 		defer monkey.UnpatchAll()
 		_, err := IsHeadAtTag("tag")
 		assert.NotNil(t, err)
@@ -137,7 +137,7 @@ func TestIsHeadAtTag(t *testing.T) {
 
 	t.Run("fail-2", func(t *testing.T) {
 		mockGetTagCommitSha("", nil)
-		mockGetHeadHash("", mockGetHeadHashErr)
+		mockGetHeadHash("", errMockGetHeadHashErr)
 		defer monkey.UnpatchAll()
 		_, err := IsHeadAtTag("tag")
 		assert.NotNil(t, err)
@@ -151,7 +151,7 @@ func TestIsDirty(t *testing.T) {
 	})
 
 	t.Run("fail", func(t *testing.T) {
-		mockCombinedOutput(nil, mockCombinedOutputErr)
+		mockCombinedOutput(nil, errMockCombinedOutputErr)
 		defer monkey.UnpatchAll()
 		_, err := IsDirty()
 		assert.NotNil(t, err)
@@ -164,8 +164,8 @@ func mockCombinedOutput(output []byte, err error) {
 	})
 }
 
-func mockGetRemoteUrl(url string, err error) {
-	monkey.Patch(GetRemoteUrl, func() (string, error) {
+func mockGetRemoteURL(url string, err error) {
+	monkey.Patch(GetRemoteURL, func() (string, error) {
 		return url, err
 	})
 }
