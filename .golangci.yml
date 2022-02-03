@@ -1,6 +1,5 @@
 # This file contains all available configuration options
 # with their default values.
-# ACI document, reference: https://yuque.antfin-inc.com/linke/help/kg1p34#yTpNe
 # For complete .golangci.yml configuration, reference: https://golangci-lint.run/usage/configuration/#config-file
 
 # options for analysis running
@@ -46,6 +45,8 @@ linters:
     # - unparam
     # - gomnd
 
+# All available settings of specific linters.
+# Also see: https://golangci-lint.run/usage/linters/#linters-configuration
 linters-settings:
   gofumpt:
     # Select the Go version to target. The default is `1.15`.
@@ -53,3 +54,9 @@ linters-settings:
     # Choose whether or not to use the extra rules that are disabled
     # by default
     extra-rules: false
+  gosec:
+    # To select a subset of rules to run.
+    # Available rules: https://github.com/securego/gosec#available-rules
+    excludes:
+      - G204
+      - G306
