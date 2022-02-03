@@ -1,6 +1,6 @@
 <p align = "center">
 <br><br>
-一个 Golang 工具库（轱辘）
+一个 Golang 常用工具库（轱辘）
 <br><br>
 <a title="Go Reference" target="_blank" href="https://pkg.go.dev/github.com/elliotxx/gulu"><img src="https://pkg.go.dev/badge/github.com/elliotxx/gulu.svg"></a>
 <a title="Go Report Card" target="_blank" href="https://goreportcard.com/report/github.com/elliotxx/gulu"><img src="https://goreportcard.com/badge/github.com/elliotxx/gulu?style=flat-square"></a>
@@ -14,7 +14,7 @@
 </p>
 
 ## 前言
-gulu 是一个 Golang 工具库，名字「轱辘」灵感来自 [88250/gulu](https://github.com/88250/gulu)，很酷的名字！
+gulu 是一个 Golang 常用工具库，名字「轱辘」灵感来自 [88250/gulu](https://github.com/88250/gulu)，很酷的名字！
 
 ## 功能
 ### git 操作 gitutil
