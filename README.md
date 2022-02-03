@@ -1,17 +1,26 @@
-# gulu
+<p align = "center">
+<br><br>
+一个 Golang 工具库（轱辘）
+<br><br>
+<a title="Go Reference" target="_blank" href="https://pkg.go.dev/github.com/elliotxx/gulu"><img src="https://pkg.go.dev/badge/github.com/elliotxx/gulu.svg"></a>
+<a title="Go Report Card" target="_blank" href="https://goreportcard.com/report/github.com/elliotxx/gulu"><img src="https://goreportcard.com/badge/github.com/elliotxx/gulu?style=flat-square"></a>
+<a title="Coverage Status" target="_blank" href="https://coveralls.io/github/elliotxx/gulu?branch=master"><img src="https://img.shields.io/coveralls/github/elliotxx/gulu/master"></a>
+<a title="Code Size" target="_blank" href="https://github.com/elliotxx/gulu"><img src="https://img.shields.io/github/languages/code-size/elliotxx/gulu.svg?style=flat-square"></a>
+<br>
+<a title="GitHub release" target="_blank" href="https://github.com/elliotxx/gulu/releases"><img src="https://img.shields.io/github/release/elliotxx/gulu.svg"></a>
+<a title="License" target="_blank" href="https://github.com/elliotxx/gulu/blob/master/LICENSE"><img src="https://img.shields.io/github/license/elliotxx/gulu"></a>
+<a title="GitHub Commits" target="_blank" href="https://github.com/elliotxx/gulu/commits/master"><img src="https://img.shields.io/github/commit-activity/m/elliotxx/gulu.svg?style=flat-square"></a>
+<a title="Last Commit" target="_blank" href="https://github.com/elliotxx/gulu/commits/master"><img src="https://img.shields.io/github/last-commit/elliotxx/gulu.svg?style=flat-square&color=FF9900"></a>
+</p>
 
-[![GitHub release](https://img.shields.io/github/release/elliotxx/gulu.svg)](https://github.com/elliotxx/gulu/releases)
-[![Github All Releases](https://img.shields.io/github/downloads/elliotxx/gulu/total.svg)](https://github.com/elliotxx/gulu/releases)
-[![license](https://img.shields.io/github/license/elliotxx/gulu.svg)](https://github.com/elliotxx/gulu/blob/master/LICENSE)
-[![Go Reference](https://pkg.go.dev/badge/github.com/elliotxx/gulu.svg)](https://pkg.go.dev/github.com/elliotxx/gulu)
+## 前言
+gulu 是一个 Golang 工具库，名字「轱辘」灵感来自 [88250/gulu](https://github.com/88250/gulu)，很酷的名字！
 
-A golang utils pkg
+## 功能
+### git 操作 gitutil
 
-# Test
-Enter the package directory and execute `make`
-```
-cd gitutil/
-make
-cd version/
-make
-```
+### 日志库 log
+
+### 操作系统 os
+
+### 版本信息 version
