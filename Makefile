@@ -4,7 +4,7 @@ GOFORMATER_VERSION	?= v0.2.0
 GOLINTER			?= golangci-lint
 GOLINTER_VERSION	?= v1.41.0
 COVER_FILE			?= cover.out
-SOURCE_PATHS		?= ./...
+SOURCE_PATHS		?= ././...
 
 .DEFAULT_GOAL := help
 

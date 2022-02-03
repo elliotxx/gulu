@@ -29,4 +29,6 @@
 z_update_version.go
 VERSION
 
+// release directory
 dist/
+build/

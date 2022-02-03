@@ -179,18 +179,6 @@ func mockCombinedOutput(output []byte, err error) {
 	})
 }
 
-func mockGetLatestTagFromLocal(tag string, err error) {
-	monkey.Patch(GetLatestTagFromLocal, func() (string, error) {
-		return tag, err
-	})
-}
-
-func mockGetLatestTagFromRemote(tag string, err error) {
-	monkey.Patch(GetLatestTagFromRemote, func() (string, error) {
-		return tag, err
-	})
-}
-
 func mockGetRemoteUrl(url string, err error) {
 	monkey.Patch(GetRemoteUrl, func() (string, error) {
 		return url, err
