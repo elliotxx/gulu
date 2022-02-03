@@ -66,21 +66,6 @@ func TestGetLatestTagFromLocal(t *testing.T) {
 	})
 }
 
-func TestGetTagList(t *testing.T) {
-	t.Run("success", func(t *testing.T) {
-		tags, err := GetTagList()
-		assert.Nil(t, err)
-		fmt.Println("local tags: ", tags)
-	})
-
-	t.Run("fail", func(t *testing.T) {
-		mockCombinedOutput(nil, mockCombinedOutputErr)
-		defer monkey.UnpatchAll()
-		_, err := GetTagList()
-		assert.NotNil(t, err)
-	})
-}
-
 func TestGetHeadHash(t *testing.T) {
 	t.Run("success", func(t *testing.T) {
 		_, err := GetHeadHash()
