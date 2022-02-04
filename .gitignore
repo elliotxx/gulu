@@ -25,10 +25,14 @@
 .idea/
 *.iml
 
-// pkg version files
+# pkg version files
 z_update_version.go
 VERSION
 
-// release directory
+# release directory
 dist/
 build/
+
+# VSCode files
+.vscode/
+__debug_bin
