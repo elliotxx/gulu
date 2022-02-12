@@ -70,7 +70,7 @@ func UnpackTarGz(targetDir, archiveFile string) error {
 			// write will fail with the same error.
 			dir := filepath.Dir(abs)
 			if !madeDir[dir] {
-				if err := os.MkdirAll(filepath.Dir(abs), 0755); err != nil {
+				if err := os.MkdirAll(filepath.Dir(abs), 0o755); err != nil {
 					return err
 				}
 
@@ -121,7 +121,7 @@ func UnpackTarGz(targetDir, archiveFile string) error {
 				}
 			}
 		case mode.IsDir():
-			if err := os.MkdirAll(abs, 0755); err != nil {
+			if err := os.MkdirAll(abs, 0o755); err != nil {
 				return err
 			}
 
@@ -147,7 +147,7 @@ func UnpackZip(targetDir, archiveFile string) error {
 
 		outpath := filepath.Join(targetDir, name)
 		if f.FileInfo().IsDir() {
-			if err := os.MkdirAll(outpath, 0755); err != nil {
+			if err := os.MkdirAll(outpath, 0o755); err != nil {
 				return err
 			}
 
@@ -160,7 +160,7 @@ func UnpackZip(targetDir, archiveFile string) error {
 		}
 
 		// File
-		if err := os.MkdirAll(filepath.Dir(outpath), 0755); err != nil {
+		if err := os.MkdirAll(filepath.Dir(outpath), 0o755); err != nil {
 			return err
 		}
 
