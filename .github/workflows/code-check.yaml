@@ -30,7 +30,7 @@ jobs:
     - name: Send coverage
       uses: shogo82148/actions-goveralls@v1
       with:
-        path-to-profile: cover.out
+        path-to-profile: coverage.out
   lint:
     name: Run lint check
     runs-on: ubuntu-latest
