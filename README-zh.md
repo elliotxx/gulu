@@ -1,6 +1,6 @@
 <p align = "center">
 <br><br>
-A Golang util pkg (gulu)
+一个 Golang 常用工具库（轱辘）
 <br><br>
 <a title="Go Reference" target="_blank" href="https://pkg.go.dev/github.com/elliotxx/gulu"><img src="https://pkg.go.dev/badge/github.com/elliotxx/gulu.svg"></a>
 <a title="Go Report Card" target="_blank" href="https://goreportcard.com/report/github.com/elliotxx/gulu"><img src="https://goreportcard.com/badge/github.com/elliotxx/gulu?style=flat-square"></a>
@@ -13,22 +13,22 @@ A Golang util pkg (gulu)
 <a title="Last Commit" target="_blank" href="https://github.com/elliotxx/gulu/commits/master"><img src="https://img.shields.io/github/last-commit/elliotxx/gulu.svg?style=flat-square&color=FF9900"></a>
 </p>
 
-## Introduction
+## 前言
 
-Gulu is a Golang util pkg, `gulu` inspired by [88250/gulu](https://github.com/88250/gulu), cool!
+gulu 是一个 Golang 常用工具库，名字「轱辘」灵感来自 [88250/gulu](https://github.com/88250/gulu)，很酷的名字！
 
-## Language
+## 语言
 
 [English](https://github.com/elliotxx/gulu/blob/master/README.md) | [简体中文](https://github.com/elliotxx/gulu/blob/master/README-zh.md)
 
-## Features
+## 功能
 
-### gitutil
+### git 操作 gitutil
 
-### log
+### 日志库 log
 
-### os
+### 操作系统 os
 
-### version
+### 版本信息 version
 
-### archive
+### 解压缩 archive
