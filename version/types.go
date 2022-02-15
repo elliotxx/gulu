@@ -64,9 +64,9 @@ type Info struct {
 // GitInfo contains git information.
 // following attributes:
 //
-//    GitLatestTag - "vX.Y.Z" used to indicate the last git tag.
-//    GitCommit - The git commit id corresponding to this source code.
-//    GitTreeState - "clean" indicates no changes since the git commit id
+//    LatestTag - "vX.Y.Z" used to indicate the last git tag.
+//    Commit - The git commit id corresponding to this source code.
+//    TreeState - "clean" indicates no changes since the git commit id
 //        "dirty" indicates source code changes after the git commit id
 type GitInfo struct {
 	LatestTag string `json:"latestTag,omitempty" yaml:"latestTag,omitempty"` // Such as "v1.2.3"
