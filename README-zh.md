@@ -32,3 +32,5 @@ gulu 是一个 Golang 常用工具库，名字「轱辘」灵感来自 [88250/gu
 ### 版本信息 version
 
 ### 解压缩 archive
+
+### 漂亮的输出库 pretty

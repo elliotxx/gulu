@@ -32,3 +32,5 @@ Gulu is a Golang util pkg, `gulu` inspired by [88250/gulu](https://github.com/88
 ### version
 
 ### archive
+
+### pretty
