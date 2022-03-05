@@ -13,15 +13,19 @@ A Golang util pkg (轱辘)
 <a title="Last Commit" target="_blank" href="https://github.com/elliotxx/gulu/commits/master"><img src="https://img.shields.io/github/last-commit/elliotxx/gulu.svg?style=flat-square&color=FF9900"></a>
 </p>
 
-## Introduction
+> Gulu is a Golang util pkg, `gulu` inspired by [88250/gulu](https://github.com/88250/gulu), cool!
 
-Gulu is a Golang util pkg, `gulu` inspired by [88250/gulu](https://github.com/88250/gulu), cool!
-
-## Language
+## 📜 Language
 
 [English](https://github.com/elliotxx/gulu/blob/master/README.md) | [简体中文](https://github.com/elliotxx/gulu/blob/master/README-zh.md)
 
-## Features
+## ⚡ Usage
+
+```
+go get -u github.com/elliotxx/gulu
+```
+
+## ✨ Features
 
 ### gitutil
 
