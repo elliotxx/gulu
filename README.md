@@ -1,6 +1,6 @@
 <div align = "center">
 <p>
-    <img width="80" src="https://github.com/elliotxx/gulu/blob/master/golang-logo.png?sanitize=true">
+    <img width="160" src="https://github.com/elliotxx/gulu/blob/master/golang-logo.png?sanitize=true">
 </p>
 <h2>A Golang util pkg (轱辘)</h2>
 <a title="Go Reference" target="_blank" href="https://pkg.go.dev/github.com/elliotxx/gulu"><img src="https://pkg.go.dev/badge/github.com/elliotxx/gulu.svg"></a>
