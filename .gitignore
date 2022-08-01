@@ -18,7 +18,6 @@
 
 # graph
 *.dot
-*.png
 *.jpeg
 
 # ide
