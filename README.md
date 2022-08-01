@@ -1,6 +1,8 @@
 <p align = "center">
-<br><br>
-A Golang util pkg (轱辘)
+<p>
+    <img width="80" src="https://github.com/elliotxx/gulu/blob/master/golang-logo.png?sanitize=true">
+</p>
+<h2>A Golang util pkg (轱辘)</h2>
 <br><br>
 <a title="Go Reference" target="_blank" href="https://pkg.go.dev/github.com/elliotxx/gulu"><img src="https://pkg.go.dev/badge/github.com/elliotxx/gulu.svg"></a>
 <a title="Go Report Card" target="_blank" href="https://goreportcard.com/report/github.com/elliotxx/gulu"><img src="https://goreportcard.com/badge/github.com/elliotxx/gulu?style=flat-square"></a>
