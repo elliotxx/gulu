@@ -6,13 +6,13 @@ import (
 	"github.com/pterm/pterm"
 )
 
-// Spinner style.
+// SpinnerT text style.
 //
 // Usage:
-//   sp, _ := pretty.Spinner.Start("Starting ...")
+//   sp, _ := pretty.SpinnerT.Start("Starting ...")
 //   time.Sleep(time.Second * 3)
 //   sp.Success("Done")
-var Spinner = pterm.SpinnerPrinter{
+var SpinnerT = pterm.SpinnerPrinter{
 	Sequence:            []string{" ⣾ ", " ⣽ ", " ⣻ ", " ⢿ ", " ⡿ ", " ⣟ ", " ⣯ ", " ⣷ "},
 	Style:               &pterm.ThemeDefault.SpinnerStyle,
 	Delay:               time.Millisecond * 100,
@@ -20,7 +20,7 @@ var Spinner = pterm.SpinnerPrinter{
 	TimerRoundingFactor: time.Second,
 	TimerStyle:          &pterm.ThemeDefault.TimerStyle,
 	MessageStyle:        &pterm.ThemeDefault.InfoMessageStyle,
-	SuccessPrinter:      &Success,
-	FailPrinter:         &Error,
-	WarningPrinter:      &Warning,
+	SuccessPrinter:      &SuccessT,
+	FailPrinter:         &ErrorT,
+	WarningPrinter:      &WarningT,
 }

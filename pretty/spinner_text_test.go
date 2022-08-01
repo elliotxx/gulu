@@ -8,21 +8,21 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSpinner(t *testing.T) {
-	fmt.Println("Spinner:")
+func TestSpinnerT(t *testing.T) {
+	fmt.Println("SpinnerT:")
 	defer fmt.Println("")
 
-	sp, err := Spinner.Start("Starting ...")
+	sp, err := SpinnerT.Start("Starting ...")
 	assert.Nil(t, err)
 	time.Sleep(time.Second * 1)
 	sp.Success("Success")
 
-	sp, err = Spinner.Start("Starting ...")
+	sp, err = SpinnerT.Start("Starting ...")
 	assert.Nil(t, err)
 	time.Sleep(time.Second * 1)
 	sp.Fail("Fail")
 
-	sp, err = Spinner.Start("Starting ...")
+	sp, err = SpinnerT.Start("Starting ...")
 	assert.Nil(t, err)
 	time.Sleep(time.Second * 1)
 	sp.Warning("Warning")
