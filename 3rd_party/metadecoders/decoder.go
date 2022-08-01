@@ -215,7 +215,6 @@ func (d Decoder) unmarshalCSV(data []byte, v interface{}) error {
 		*v.(*interface{}) = records
 	default:
 		return fmt.Errorf("CSV cannot be unmarshaled into %T", v)
-
 	}
 
 	return nil

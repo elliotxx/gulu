@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/elliotxx/gulu/configutil/metadecoders"
+	"github.com/elliotxx/gulu/3rd_party/metadecoders"
 	"github.com/spf13/afero"
 )
 

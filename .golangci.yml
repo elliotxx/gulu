@@ -5,6 +5,8 @@
 # options for analysis running
 run:
   timeout: 10m
+  skip-files:
+    - 3rd_party/
 
 linters:
   disable-all: true

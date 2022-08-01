@@ -22,8 +22,10 @@ func fatal(msg string, code int) {
 		if !strings.HasSuffix(msg, "\n") {
 			msg += "\n"
 		}
+
 		pretty.ErrorT.WithWriter(os.Stderr).Print(msg)
 	}
+
 	os.Exit(code)
 }
 
