@@ -21,6 +21,7 @@ func TestIsValidConfigFilename(t *testing.T) {
 	type args struct {
 		filename string
 	}
+
 	tests := []struct {
 		name string
 		args args
@@ -62,6 +63,7 @@ func TestIsValidConfigFilename(t *testing.T) {
 			want: false,
 		},
 	}
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := IsValidConfigFilename(tt.args.filename); got != tt.want {
@@ -77,6 +79,7 @@ func TestFromFile(t *testing.T) {
 		filename string
 		data     interface{}
 	}
+
 	tests := []struct {
 		name    string
 		args    args
@@ -101,6 +104,7 @@ func TestFromFile(t *testing.T) {
 			wantErr: true,
 		},
 	}
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if err := FromFile(tt.args.fs, tt.args.filename, tt.args.data); (err != nil) != tt.wantErr {
@@ -116,6 +120,7 @@ func TestFromConfigString(t *testing.T) {
 		configType string
 		data       interface{}
 	}
+
 	tests := []struct {
 		name    string
 		args    args
@@ -144,6 +149,7 @@ logging:
 			wantErr: true,
 		},
 	}
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if err := FromConfigString(tt.args.config, tt.args.configType, tt.args.data); (err != nil) != tt.wantErr {
@@ -157,6 +163,7 @@ func TestGetFileExtension(t *testing.T) {
 	type args struct {
 		filename string
 	}
+
 	tests := []struct {
 		name string
 		args args
@@ -198,6 +205,7 @@ func TestGetFileExtension(t *testing.T) {
 			want: "ini",
 		},
 	}
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := GetFileExtension(tt.args.filename); got != tt.want {
