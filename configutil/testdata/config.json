@@ -1,0 +1,9 @@
+{
+  "network": {
+    "requestTimeout": "30s"
+  },
+  "logging": {
+    "logLevel": "debug",
+    "enableLoggingToFile": true
+  }
+}
