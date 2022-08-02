@@ -41,11 +41,11 @@ var ErrExit = fmt.Errorf("exit")
 //
 // Example:
 //   func main() {
-//   	cmd := NewRootCommand()
+//       cmd := NewRootCommand()
 //
-//   	if err := cmd.Execute(); err != nil {
-//   		cmdutil.CheckErr(err)
-//   	}
+//       if err := cmd.Execute(); err != nil {
+//           cmdutil.CheckErr(err)
+//       }
 //   }
 func CheckErr(err error) {
 	checkErr(err, fatalErrHandler)

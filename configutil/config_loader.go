@@ -24,13 +24,13 @@ func init() {
 //
 // Example:
 //   configData := &Configuration{}
-// 	 if !configutil.IsValidConfigFilename(configFile) {
-// 	 	return fmt.Errorf("invalid config file: %s", configFile)
-// 	 }
-// 	 err := configutil.FromFile(afero.NewOsFs(), configFile, configData)
-// 	 if err != nil {
-// 	 	return err
-// 	 }
+//   if !configutil.IsValidConfigFilename(configFile) {
+//       return fmt.Errorf("invalid config file: %s", configFile)
+//   }
+//   err := configutil.FromFile(afero.NewOsFs(), configFile, configData)
+//   if err != nil {
+//       return err
+//   }
 func IsValidConfigFilename(filename string) bool {
 	return validConfigFileExtensionsMap[GetFileExtension(filename)]
 }
